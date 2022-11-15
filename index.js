@@ -114,6 +114,8 @@ function changeDirection(event) {
     const UP    = 38
     const RIGHT = 39
     const DOWN  = 40
+    const ENTER = 32
+
     const goingUp    = (yVelocity == -unitSize)
     const goingDown  = (yVelocity == unitSize)
     const goingRight = (xVelocity == unitSize)
