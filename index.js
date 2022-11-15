@@ -78,12 +78,12 @@ function  clearBoard() {
 function  createFood() {
     const randomFood = (min,max) => {
         const rnNum = Math.round(
-            (Math.random() * (max - max) / unitSize) * unitSize
+            (Math.random() * (max - min) / unitSize) * unitSize
             );
         return rnNum
-        foodX = randomFood(0,gameWidth - unitSize)
-        foodY = randomFood(0,gameHeight - unitSize)
     }
+    foodX = randomFood(0,gameWidth - unitSize)
+    foodY = randomFood(0,gameHeight - unitSize)
 }
 function drawFood() {
     ctx.fillStyle = foodColor
@@ -96,14 +96,12 @@ function moveSnake() {
     }
     snake.unshift(head)
     if(snake[0].x == foodX && snake[0].y == foodY){
-        score++
-        scoreText.textContent = score
+        scoreText.textContent = score++
         createFood()
     }else{
         snake.pop()
     }
 }
-
 function drawSnake() {
     ctx.fillStyle = snakeColor
     ctx.strokeStyle = snakeBorder
@@ -115,7 +113,7 @@ function drawSnake() {
 function changeDirection(event) {
     const keyPresed = event.keyCode
     const LEFT  = 37
-    const UP    = 28
+    const UP    = 38
     const RIGHT = 39
     const DOWN  = 40
     
@@ -123,7 +121,6 @@ function changeDirection(event) {
     const goingDown  = (yVelocity == unitSize)
     const goingRight = (xVelocity == unitSize)
     const goingLeft  = (xVelocity == -unitSize)
-
     switch (true) {
         case(keyPresed == LEFT && !goingRight):
             xVelocity = -unitSize
@@ -148,9 +145,8 @@ function displayGameOver() {
     ctx.font = '50px MV Boli'
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
-    ctx.fillText('Game Over',gameWidth/ 2, gameHeight/ 2)
+    ctx.fillText('Game Over',gameWidth/2, gameHeight/2)
     running = false
-
 }
 function resetGame() {
     score = 0
