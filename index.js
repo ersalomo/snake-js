@@ -77,9 +77,7 @@ function  clearBoard() {
 }
 function  createFood() {
     const randomFood = (min,max) => {
-        const rnNum = Math.round(
-            (Math.random() * (max - min) / unitSize) * unitSize
-            );
+        const rnNum = Math.round((Math.random() * (max - min) + min) / unitSize) * unitSize;
         return rnNum
     }
     foodX = randomFood(0,gameWidth - unitSize)
@@ -116,7 +114,6 @@ function changeDirection(event) {
     const UP    = 38
     const RIGHT = 39
     const DOWN  = 40
-    
     const goingUp    = (yVelocity == -unitSize)
     const goingDown  = (yVelocity == unitSize)
     const goingRight = (xVelocity == unitSize)
